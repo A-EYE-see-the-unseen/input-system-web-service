@@ -5,12 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google Storage</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-    <h2>Google Storage API</h2>
-    <input type="file" name="imgfile" accept="image/jpeg, image/jpeg, image/png" id="imgfile">
-    <button id="uploadBtn" >Upload</button>
-    <div class="" id="images"></div>
-    <script src="/upload.js"></script>
+    <div class="page-center">
+        <div id="content" class="cardd">  
+           <h1>Upload Your <strong>Files</strong> To A-Eye Server</h1>
+            <i class="fa fa-cloud" aria-hidden="true"></i>
+            <input class="form-control form-control-lg" id="formFileLg" type="file" name="imgfile" accept="image/jpeg, image/jpeg, image/png" id="imgfile">
+            <button class="upload" id="uploadBtn" >Upload</button>
+             <div class="" id="images"></div>
+             <script src="/upload.js"></script>
+        </div>
+    </div>
 </body>
 </html>
