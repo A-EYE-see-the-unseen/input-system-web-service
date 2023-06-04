@@ -25,6 +25,15 @@ function uuidv4() {
       method: "POST",
       body: formData,
     })
-      .then((res) => res.text())
-  });
-
+    .then((response) => {
+      if (response.ok) {
+        window.alert("File uploaded successfully!");
+      } else {
+        window.alert("Failed to upload file.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      window.alert("An error occurred while uploading the file.");
+    });
+});
