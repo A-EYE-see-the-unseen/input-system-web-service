@@ -13,27 +13,31 @@ const multer = Multer({
   },
 });
 
-let projectId = "uploadimage-388307"; // Get this from Google Cloud
+let projectId = "a-eye-project"; // Get this from Google Cloud
 let keyFilename = "serviceAccountKey.json"; // Get this from Google Cloud -> Credentials -> Service Accounts
 const storage = new Storage({
   projectId,
   keyFilename,
 });
-const bucket = storage.bucket("temp-storage-0708"); // Get this from Google Cloud -> Storage
+const bucket = storage.bucket("temp_detect"); // Get this from Google Cloud -> Storage
 
 // Streams file upload to Google Storage
 app.post("/upload", multer.single("imgfile"), (req, res) => {
-  console.log("Made it /upload");
+  if (!req.file) {
+    return res.status(400).send({ message: "Please upload a file!" });
+  }
   try {
     if (req.file) {
       console.log("File found, trying to upload...");
-      const blob = bucket.file(req.file.originalname);
+      const fileName = "detecting/" + req.file.originalname;
+      const blob = bucket.file(fileName);
       const blobStream = blob.createWriteStream();
 
       blobStream.on("finish", () => {
         res.status(200).send({
-            msg: "Upload Success",
-          });
+          msg: "Upload Success",
+          url: `https://storage.googleapis.com/${bucket.name}/${fileName}`,
+        });
         console.log("Upload Success");
       });
       blobStream.end(req.file.buffer);
